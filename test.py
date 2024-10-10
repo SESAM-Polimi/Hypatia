@@ -10,16 +10,16 @@ from hypatia import Model,Plotter, Sensitivity
 
 #%%
 test = Model(
-    path = 'test/Trilateral/tests/test_robustness/blue_hydrogen_LP/sets', 
-    mode = 'Planning', period_step = 10, snapshot=False, MILP=True)
+    path = r'C:\Users\NAMAZIFN\OneDrive - VITO\Documents\GitHub\Hypatia-Trilater-H2\V0.1.0\inland green h2\min totex & red III\sets', 
+    mode = 'Planning', period_step = 2, snapshot=False, MILP=False)
 #%%
-#test.create_data_excels(path = 'test/Trilateral/tests/test_LP/blue_hydrogen_final_LP/parameters_test',force_rewrite=True)
+#test.create_data_excels(path = r'C:\Users\NAMAZIFN\OneDrive - VITO\Documents\GitHub\Hypatia-Trilater-H2\V0.1.0\decentral_onshore_linear/parameters_mod')
 #%%
 test.read_input_data(
-    path = 'test/Trilateral/tests/test_robustness/blue_hydrogen/parameters_low_cost'
+    path = r'C:\Users\NAMAZIFN\OneDrive - VITO\Documents\GitHub\Hypatia-Trilater-H2\V0.1.0\inland green h2\min totex & red III/parameters'
 )
 #%%
-#test.resample_input_data(downsample=20)
+test.resample_input_data(downsample=3)
 #%%
 #import gurobipy
 
@@ -27,7 +27,7 @@ test.read_input_data(
 #env.setParam("LogFile","log.log")
 test.run(solver = "gurobi", verbosity= True)
 #%%
-test.to_csv(path="test/Trilateral/tests/test_robustness/blue_hydrogen/results_low_cost",sep=";", force_rewrite= True)
+test.to_csv(path=r"C:\Users\NAMAZIFN\OneDrive - VITO\Documents\GitHub\Hypatia-Trilater-H2\V0.1.0\LCOH\2050\green hydrogen import_SOC_bat/results",sep=";", force_rewrite= True)
 #%%
 #import pandas as pd
 #%%
@@ -35,7 +35,7 @@ test.to_csv(path="test/Trilateral/tests/test_robustness/blue_hydrogen/results_lo
 #%%
 #salvage_new = offshore_test.model.salvage_inv
 #%%
-#SOC = offshore_test.model.storage_SOC["reg4"].value
+#SOC = offshore_test.model.storage_SOC_bat["reg4"].value
 #SOC_output = pd.DataFrame(SOC)
 #%%
 #charge = offshore_test.results["use_by_tech"]["reg4"]["Storage"]

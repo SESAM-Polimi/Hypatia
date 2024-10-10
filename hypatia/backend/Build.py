@@ -1537,8 +1537,8 @@ class BuildModel:
         for reg in get_regions_with_storage(self.sets):
             for indx, year in enumerate(self.sets.main_years):
 
-                self.constr.append(self.storage_SOC[reg][(indx+1)* len(self.sets.time_steps)-1,:]-\
-                                   cp.multiply(self.sets.data[reg]["storage_initial_SOC"].loc[year,:],
+                self.constr.append(self.storage_SOC[reg][(indx+1)* len(self.sets.time_steps)-1:(indx+1)* len(self.sets.time_steps),:]-\
+                                   cp.multiply(self.sets.data[reg]["storage_initial_SOC"].values[(indx):(indx+1),:],
                                                self.totalcapacity[reg]["Storage"][(indx):(indx+1),:]) == 0)
 
 
